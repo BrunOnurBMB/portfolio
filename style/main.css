@@ -92,3 +92,24 @@ canvas {
     z-index: -10 !important;
     pointer-events: none;
 }
+
+/* Scrollbar para navegadores baseados em WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #14403c; /* Cor do fundo da barra */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #5eb8ac; /* Cor do "botão" da barra */
+  border-radius: 6px;
+  border: 2px solid #14403c; /* Borda para dar contraste */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5eb8ac #14403c;
+}

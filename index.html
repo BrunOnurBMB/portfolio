@@ -3,7 +3,31 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Bruno Bifano</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfólio de Bruno Bifano, desenvolvedor web.  Conheça meus projetos, habilidades e trajetória.">
+    <meta name="author" content="Bruno Bifano">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dev Bruno Bifano">
+    <meta property="og:description" content="Portfólio de Bruno Bifano, desenvolvedor web.">
+    <meta property="og:image" content="https://brunonurbmb.github.io/portifolio/assets/imgs/preview.jpg
+">
+    <meta property="og:url" content="https://brunobifano.dev">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dev Bruno Bifano">
+    <meta name="twitter:description"
+        content="Conheça o portfólio de Bruno Bifano, desenvolvedor web e entusiasta de tecnologia.">
+    <meta name="twitter:image" content="https://brunonurbmb.github.io/portifolio/assets/imgs/preview.jpg
+">
+    <meta name="twitter:site" content="@LDMVC">
+
+    <link rel="icon" href="/assets/imgs/myLogo.png" type="image/png">
+    <title>Dev Bruno Bifano</title>
     <link rel="stylesheet" href="/style/main.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="importmap">
@@ -43,6 +67,17 @@
                     </li>
                     <li><a href="#contato" class="hover:text-[#5eb8ac] transition-colors duration-200">Contato</a>
                     </li>
+                    <li>
+                        <a href="./assets/docs/Bruno-Bifano-Curriculo.pdf" download
+                            class="group hover:text-[#5eb8ac] transition-colors duration-200 flex items-center gap-2">
+                            <span>Dowload C.V.</span>
+                            <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" fill="none"
+                                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 4v12" />
+                            </svg>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -70,6 +105,7 @@
             </div>
         </section>
     </header>
+    <!-- Animação das particulas na main -->
     <div id="particles-wrapper" class="relative z-10">
         <div id="particles-bg" class="absolute top-0 left-0 w-full h-full -z-10">
             <canvas id="bg-canvasMain" class="w-full h-full absolute top-0 left-0"></canvas>
@@ -77,10 +113,10 @@
         </div>
 
         <!-- CONTEÚDO -->
-        <main class="relative z-30 px-6 py-12 space-y-16 max-w-7xl mx-auto px-6">
+        <main class="relative z-30 px-6 py-12 space-y-16 max-w-7xl mx-auto">
 
             <section id="sobre"
-                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg transform -translate-y-8 transition-transform duration-700 hover:scale-[1.01] hover:-translate-y-10 shadow-2xl border border-white/20 ring-1 ring-white/10"
+                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg opacity-0 translate-y-8 transition-all duration-700 shadow-2xl border border-white/20 ring-1 ring-white/10"
                 data-aos="fade-up">
                 <div
                     class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-6 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] space-y-6 flex flex-col items-center transition-all duration-500 ">
@@ -137,7 +173,7 @@
             </section>
 
             <section id="tecnologia"
-                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg transform -translate-y-8 transition-transform duration-700 hover:scale-[1.01] hover:-translate-y-10 shadow-2xl border border-white/20 ring-1 ring-white/10"
+                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg opacity-0 translate-y-8 transition-all duration-700 shadow-2xl border border-white/20 ring-1 ring-white/10"
                 data-aos="fade-up" data-aos-delay="100">
                 <div
                     class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-6 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] space-y-6 flex flex-col items-center transition-all duration-500 ">
@@ -234,7 +270,7 @@
             </section>
 
             <section id="projetos"
-                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg transform -translate-y-8 transition-transform duration-700 hover:scale-[1.01] hover:-translate-y-10 shadow-2xl border border-white/20 ring-1 ring-white/10 transition-all duration-700 overflow-hidden"
+                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg opacity-0 translate-y-8 transition-all duration-700 shadow-2xl border border-white/20 ring-1 ring-white/10"
                 data-aos="fade-up" data-aos-delay="200">
                 <div
                     class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-6 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] space-y-6 flex flex-col items-center transition-all duration-500 transition-all duration-700 overflow-hidden">
@@ -254,8 +290,8 @@
                             <!-- Card 1 -->
                             <div
                                 class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
-                                <img src="./assets/imgs/portifolioDSI2.png" alt="Projeto 1"
-                                    class="w-full h-48 object-cover">
+                                <img src="./assets/imgs/portifolioDSI2.png"
+                                    alt="imagem ilustrativa do projeto API - DSI-2" class="w-full h-48 object-cover">
                                 <div class="p-4 flex flex-col gap-2">
                                     <h3 class="text-xl font-semibold text-[#aed4c8]">API - DSI-2</h3>
                                     <p class="text-white/90 text-sm">
@@ -283,7 +319,8 @@
                             <!-- Card 2 -->
                             <div
                                 class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
-                                <img src="./assets/imgs/portifolioDesafioJava.png" alt="Projeto 2"
+                                <img src="./assets/imgs/portifolioDesafioJava.png"
+                                    alt="imagem ilustrativa do projeto Desafios em Java"
                                     class="w-full h-48 object-cover">
                                 <div class="p-4 flex flex-col gap-2">
                                     <h3 class="text-xl font-semibold text-[#aed4c8]">Desafios em Java</h3>
@@ -309,8 +346,8 @@
                             <!-- Card 3 -->
                             <div
                                 class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
-                                <img src="./assets/imgs/portifolioACESS.png" alt="Projeto 3"
-                                    class="w-full h-48 object-cover">
+                                <img src="./assets/imgs/portifolioACESS.png"
+                                    alt="imagem ilustrativa do projeto Portal WEB" class="w-full h-48 object-cover">
                                 <div class="p-4 flex flex-col gap-2">
                                     <h3 class="text-xl font-semibold text-[#aed4c8]">Portal WEB.
                                     </h3>
@@ -342,17 +379,15 @@
                                     class="card-extra opacity-0 translate-y-4 transition-all duration-700 ease-in-out mb-0">
                                     <div
                                         class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
-                                        <img src="./assets/imgs/projeto4.png" alt="Projeto 4"
-                                            class="w-full h-48 object-cover">
+                                        <img src="./assets/imgs/portifolioDesafioJava.png"
+                                            alt="imagem ilustrativa do projeto xxx" class="w-full h-48 object-cover">
                                         <div class="p-4 flex flex-col gap-2">
-                                            <h3 class="text-xl font-semibold text-[#aed4c8]">Projeto 4</h3>
-                                            <p class="text-white/90 text-sm">Descrição do projeto 4.</p>
-                                            <p class="text-sm text-white/60"><strong>Tecnologias:</strong> React,
-                                                Node.js
+                                            <h3 class="text-xl font-semibold text-[#aed4c8]">EMBREVE</h3>
+                                            <p class="text-white/90 text-sm">Descrição do projeto.</p>
+                                            <p class="text-sm text-white/60"><strong>Tecnologias:</strong>
                                             </p>
                                             <p class="text-sm text-white/60"><strong>Aprendizado:</strong>
-                                                Integração
-                                                frontend/backend.</p>
+                                            </p>
                                             <p class="text-md text-white/90">
                                                 <a class="hover:text-black font-bold" target="_blank" href="#">Link
                                                     do
@@ -368,18 +403,15 @@
                                     class="card-extra opacity-0 translate-y-4 transition-all duration-700 ease-in-out mb-0">
                                     <div
                                         class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
-                                        <img src="./assets/imgs/projeto5.png" alt="Projeto 5"
-                                            class="w-full h-48 object-cover">
+                                        <img src="./assets/imgs/portifolioDesafioJava.png"
+                                            alt="imagem ilustrativa do projeto xxx" class="w-full h-48 object-cover">
                                         <div class="p-4 flex flex-col gap-2">
-                                            <h3 class="text-xl font-semibold text-[#aed4c8]">Projeto 5</h3>
-                                            <p class="text-white/90 text-sm">Descrição do projeto 5.</p>
-                                            <p class="text-sm text-white/60"><strong>Tecnologias:</strong> Vue.js,
-                                                Firebase
+                                            <h3 class="text-xl font-semibold text-[#aed4c8]">EMBREVE</h3>
+                                            <p class="text-white/90 text-sm">Descrição do projeto.</p>
+                                            <p class="text-sm text-white/60"><strong>Tecnologias:</strong> V
                                             </p>
                                             <p class="text-sm text-white/60"><strong>Aprendizado:</strong>
-                                                Autenticação
-                                                e
-                                                deploy.</p>
+                                            </p>
                                             <p class="text-md text-white/90">
                                                 <a class="hover:text-black font-bold" target="_blank" href="#">Link
                                                     do
@@ -395,18 +427,14 @@
                                     class="card-extra opacity-0 translate-y-4 transition-all duration-700 ease-in-out mb-0">
                                     <div
                                         class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
-                                        <img src="./assets/imgs/projeto6.png" alt="Projeto 6"
-                                            class="w-full h-48 object-cover">
+                                        <img src="./assets/imgs/portifolioDesafioJava.png"
+                                            alt="imagem ilustrativa do projeto xxx" class="w-full h-48 object-cover">
                                         <div class="p-4 flex flex-col gap-2">
-                                            <h3 class="text-xl font-semibold text-[#aed4c8]">Projeto 6</h3>
-                                            <p class="text-white/90 text-sm">Descrição do projeto 6.</p>
-                                            <p class="text-sm text-white/60"><strong>Tecnologias:</strong> Python,
-                                                Flask
+                                            <h3 class="text-xl font-semibold text-[#aed4c8]">EMBREVE</h3>
+                                            <p class="text-white/90 text-sm">Descrição do projeto.</p>
+                                            <p class="text-sm text-white/60"><strong>Tecnologias:</strong>
                                             </p>
-                                            <p class="text-sm text-white/60"><strong>Aprendizado:</strong> APIs REST
-                                                e
-                                                rotas
-                                                dinâmicas.</p>
+                                            <p class="text-sm text-white/60"><strong>Aprendizado:</strong> </p>
                                             <p class="text-md text-white/90">
                                                 <a class="hover:text-black font-bold" target="_blank" href="#">Link
                                                     do
@@ -429,7 +457,7 @@
             </section>
 
             <section id="contato"
-                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg transform -translate-y-8 transition-transform duration-700 hover:scale-[1.01] hover:-translate-y-10 shadow-2xl border border-white/20 ring-1 ring-white/10"
+                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg opacity-0 translate-y-8 transition-all duration-700 shadow-2xl border border-white/20 ring-1 ring-white/10"
                 data-aos="fade-up" data-aos-delay="300">
                 <div
                     class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-6 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] space-y-6 flex flex-col items-center transition-all duration-500 ">
@@ -542,6 +570,7 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="/scripts/animationAOS.js"></script>
     <script src="/scripts/projectsSeeMore.js"></script>
+    <script src="/scripts/smoothScrol.js"></script>
 </body>
 
 </html>
