@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Bruno Bifano</title>
+    <link rel="stylesheet" href="/style/main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="importmap">
+        {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js"
+        }
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-b from-[#1c5a55] to-[#14403c] text-white scroll-smooth">
+    <header>
+        <nav class="fixed top-0 z-40 left-0 w-full bg-white/20 backdrop-blur-md shadow-md">
+            <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="text-white font-bold text-x1">Dev Bruno Bifano</div>
+
+                <!-- Botão hamburger -->
+                <button id="menu-btn" class="text-white md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <!-- Links do menu -->
+                <ul id="menu"
+                    class="hidden absolute top-full left-0 w-full bg-white/20 backdrop-blur-md text-white font-medium flex-col space-y-4 px-6 py-4 md:relative md:flex md:flex-row md:space-y-0 md:space-x-6 md:bg-transparent md:backdrop-blur-none md:w-auto md:top-auto md:left-auto">
+                    <li><a href="#hero" class="hover:text-[#5eb8ac] transition-colors duration-200 active-link">Home</a>
+                    </li>
+                    <li><a href="#sobre" class="hover:text-[#5eb8ac] transition-colors duration-200">Sobre</a></li>
+                    <li><a href="#tecnologia"
+                            class="hover:text-[#5eb8ac] transition-colors duration-200">Tecnologias</a>
+                    </li>
+                    <li><a href="#projetos"
+                            class="hover:text-[#5eb8ac] transition transition-colors duration-200">Projetos</a>
+                    </li>
+                    <li><a href="#contato" class="hover:text-[#5eb8ac] transition-colors duration-200">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- HERO -->
+        <section id="hero" class="relative h-screen">
+
+            <div class="absolute inset-0 background-size:cover bg-cover bg-center bg-no-repeat z-0"
+                style="background-image: url('./assets/imgs/myBG.jpeg');">
+            </div>
+
+            <!-- Overlay escuro transparente -->
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+
+            <!-- Canvas de partículas -->
+            <canvas id="bg-canvas" class="absolute top-0 left-0 w-full h-full z-20 pointer-events-none"></canvas>
+
+            <!-- Texto por cima do overlay -->
+            <div
+                class="relative z-30 flex flex-col items-center justify-center h-full text-center px-4 backdrop-blur-sm bg-black/30 rounded">
+                <h1 class="stroke-hero text-2xl sm:text-3xl md:text-[48px] lg:text-[64px] font-bold">BEM VINDO !</h1>
+                <p
+                    class="mt-8 text-base sm:text-lg md:text-[20px] lg:text-[24px] font-medium leading-snug text-[#aed4c8]">
+                    Meu nome é Bruno Bifano, sou um desenvolvedor apaixonado por tecnologia.
+                </p>
+            </div>
+        </section>
+    </header>
+    <div id="particles-wrapper" class="relative z-10">
+        <div id="particles-bg" class="absolute top-0 left-0 w-full h-full -z-10">
+            <canvas id="bg-canvasMain" class="w-full h-full absolute top-0 left-0"></canvas>
+            <div class="absolute inset-0 bg-black/30 backdrop-blur-sm z-[-5]"></div>
+        </div>
+
+        <!-- CONTEÚDO -->
+        <main class="relative z-30 px-6 py-12 space-y-16 max-w-7xl mx-auto px-6">
+
+            <section id="sobre"
+                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg transform -translate-y-8 transition-transform duration-700 hover:scale-[1.01] hover:-translate-y-10 shadow-2xl border border-white/20 ring-1 ring-white/10"
+                data-aos="fade-up">
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-6 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] space-y-6 flex flex-col items-center transition-all duration-500 ">
+
+                    <!-- Divisor decorativo -->
+                    <div class="w-full h-[2px] bg-[#5eb8ac]/30 rounded-full"></div>
+
+                    <!-- Título -->
+                    <div class="w-full text-center">
+                        <h2
+                            class="text-3xl font-semibold relative inline-block after:block after:w-16 after:h-1 after:bg-[#5eb8ac] after:mt-2">
+                            Sobre mim
+                        </h2>
+                    </div>
+
+                    <!-- Texto de introdução -->
+                    <div class="max-w-3xl text-lg space-y-6 text-center">
+                        <p>
+                            Sou um desenvolvedor apaixonado por tecnologia, jogos e aleatoriedades, daqueles que se
+                            empolgam ao transformar ideias em sites, sistemas e experiências digitais.
+                        </p>
+                        <p>
+                            Gosto de pensar que programar é uma forma de expressão um jeito de comunicar visões,
+                            resolver problemas e conectar pessoas através da interface.
+                        </p>
+                    </div>
+
+                    <!-- Elemento 3D centralizado -->
+                    <div id="sceneWrapper"
+                        class="relative w-full max-w-md h-[300px] flex justify-center items-center z-10">
+                        <canvas id="scene" class="w-full h-full"></canvas>
+                        <button id="playButton"
+                            class="absolute top-4 left-1/2 -translate-x-1/2 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-lg shadow-lg text-lg z-50 opacity-0 pointer-events-none transition-opacity duration-500">
+                            PLAY!
+                        </button>
+                    </div>
+
+                    <!-- Texto complementar -->
+                    <div class="max-w-3xl text-lg space-y-6 text-center">
+                        <p>
+                            Venho estudando e praticando desenvolvimento desde 2023, sempre buscando aprender mais e
+                            me aprimorar. Minha jornada começou com curiosidade e vontade de migrar de ramo. Entrei na
+                            Fatec de São Roque no curso de Sistemas para Internet, onde pude aprender
+                            diversas tecnologias e linguagens de programação.
+                        </p>
+                        <p>
+                            Acredito nos detalhes. Aqueles que talvez nem todo mundo perceba, mas que fazem toda a
+                            diferença quando alguém diz “uau, isso está caprichado”. Gosto de construir aplicações que
+                            sejam bonitas, práticas, duráveis e abertas pra evoluir.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="tecnologia"
+                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg transform -translate-y-8 transition-transform duration-700 hover:scale-[1.01] hover:-translate-y-10 shadow-2xl border border-white/20 ring-1 ring-white/10"
+                data-aos="fade-up" data-aos-delay="100">
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-6 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] space-y-6 flex flex-col items-center transition-all duration-500 ">
+
+                    <!-- Título e introdução -->
+                    <div class="text-center">
+                        <h2
+                            class="text-3xl font-semibold relative inline-block after:block after:w-16 after:h-1 after:bg-[#5eb8ac] after:mt-2">
+                            Tecnologias
+                        </h2>
+                        <p class="text-lg pt-4 max-w-2xl mx-auto">
+                            Aqui vou listar as tecnologias que possuo algum conhecimento e pratico durante minha
+                            jornada.
+                        </p>
+                    </div>
+
+                    <!-- Blocos de tecnologia -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
+                        <!-- FrontEnd -->
+                        <div
+                            class="bg-white/5 border border-white/10 rounded-lg p-4 shadow-sm transition-transform duration-700 hover:scale-[1.05] shadow-2xl border border-white/20 ring-1 ring-white/10">
+                            <h3 class="text-xl font-semibold mb-2 text-[#aed4c8]">FrontEnd</h3>
+                            <ul class="list-disc pl-5 space-y-1 text-white/90">
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">HTML
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">CSS
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">
+                                    JavaScript</li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">
+                                    Bootstrap</li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">
+                                    Tailwind</li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">ThreeJS
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">Figma
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">Blender
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Mobile -->
+                        <div
+                            class="bg-white/5 border border-white/10 rounded-lg p-4 shadow-sm transition-transform duration-700 hover:scale-[1.05] shadow-2xl border border-white/20 ring-1 ring-white/10">
+                            <h3 class="text-xl font-semibold mb-2 text-[#aed4c8]">Mobile</h3>
+                            <ul class="list-disc pl-5 space-y-1 text-white/90">
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">Flutter
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">Kotlin
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- BackEnd -->
+                        <div
+                            class="bg-white/5 border border-white/10 rounded-lg p-4 shadow-sm transition-transform duration-700 hover:scale-[1.05] shadow-2xl border border-white/20 ring-1 ring-white/10">
+                            <h3 class="text-xl font-semibold mb-2 text-[#aed4c8]">BackEnd</h3>
+                            <ul class="list-disc pl-5 space-y-1 text-white/90">
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">Java
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">PHP
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">
+                                    SpringBoot</li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">MySQL
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">
+                                    SQLServer</li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">Docker
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Versionamento e testes -->
+                        <div
+                            class="bg-white/5 border border-white/10 rounded-lg p-4 shadow-sm transition-transform duration-700 hover:scale-[1.05] shadow-2xl border border-white/20 ring-1 ring-white/10">
+                            <h3 class="text-xl font-semibold mb-2 text-[#aed4c8]">Versionamento e Testes</h3>
+                            <ul class="list-disc pl-5 space-y-1 text-white/90">
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">GitHub
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">Git
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">GitHub
+                                    Actions</li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">JUnit
+                                </li>
+                                <li class="hover:text-[#5eb8ac] hover:translate-x-1 transition-all duration-200">PHPUnit
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projetos"
+                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg transform -translate-y-8 transition-transform duration-700 hover:scale-[1.01] hover:-translate-y-10 shadow-2xl border border-white/20 ring-1 ring-white/10 transition-all duration-700 overflow-hidden"
+                data-aos="fade-up" data-aos-delay="200">
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-6 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] space-y-6 flex flex-col items-center transition-all duration-500 transition-all duration-700 overflow-hidden">
+
+                    <!-- Título -->
+                    <div class="text-center">
+                        <h2
+                            class="text-3xl font-semibold relative inline-block after:block after:w-16 after:h-1 after:bg-[#5eb8ac] after:mt-2">
+                            Projetos
+                        </h2>
+                    </div>
+
+                    <!-- Grid de cards -->
+                    <div id="projects-wrapper" class="transition-all duration-700 overflow-hidden">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                            <!-- Card 1 -->
+                            <div
+                                class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
+                                <img src="./assets/imgs/portifolioDSI2.png" alt="Projeto 1"
+                                    class="w-full h-48 object-cover">
+                                <div class="p-4 flex flex-col gap-2">
+                                    <h3 class="text-xl font-semibold text-[#aed4c8]">API - DSI-2</h3>
+                                    <p class="text-white/90 text-sm">
+                                        Sistemas de cadastro de professores, salas e periodos letivos, com
+                                        autenticação e autorização.
+                                    </p>
+                                    <p class="text-sm text-white/60">
+                                        <strong>Tecnologias:</strong> PHP, Insominia, MySQL, HTML, JavaScript, CSS,
+                                        FramWork
+                                        CodIgniter.
+                                    </p>
+                                    <p class="text-sm text-white/60">
+                                        <strong>Aprendizado:</strong> Desenvolvimento de EndPoints, estruturação de
+                                        banco de
+                                        dados e boas práticas de programação.
+                                    </p>
+                                    <p class="text-md text-white/90">
+                                        <a class="hover:text-black font-bold" target="_blank"
+                                            href="https://github.com/BrunOnurBMB/DSI-2-Fatec">Link do projeto no
+                                            GitHub</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div
+                                class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
+                                <img src="./assets/imgs/portifolioDesafioJava.png" alt="Projeto 2"
+                                    class="w-full h-48 object-cover">
+                                <div class="p-4 flex flex-col gap-2">
+                                    <h3 class="text-xl font-semibold text-[#aed4c8]">Desafios em Java</h3>
+                                    <p class="text-white/90 text-sm">
+                                        Desafio de programação com Java.
+                                    </p>
+                                    <p class="text-sm text-white/60">
+                                        <strong>Tecnologias:</strong> Java
+                                    </p>
+                                    <p class="text-sm text-white/60">
+                                        <strong>Aprendizado:</strong> Boas práticas de programação, estruturação de
+                                        código e
+                                        resolução de problemas.
+                                    </p>
+                                    <p class="text-md text-white/90">
+                                        <a class="hover:text-black font-bold" target="_blank"
+                                            href="https://github.com/BrunOnurBMB/desafio100Java">Link do projeto no
+                                            GitHub</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div
+                                class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
+                                <img src="./assets/imgs/portifolioACESS.png" alt="Projeto 3"
+                                    class="w-full h-48 object-cover">
+                                <div class="p-4 flex flex-col gap-2">
+                                    <h3 class="text-xl font-semibold text-[#aed4c8]">Portal WEB.
+                                    </h3>
+                                    <p class="text-white/90 text-sm">
+                                        Portal ERB ficado na acessibilidade.
+                                    </p>
+                                    <p class="text-sm text-white/60">
+                                        <strong>Tecnologias:</strong> HTML, Bootstrap, CSS, PHP.
+                                    </p>
+                                    <p class="text-sm text-white/60">
+                                        <strong>Aprendizado:</strong> Utilização de boas práticas de acessibilidade e
+                                        responsividade.
+                                    </p>
+                                    <p class="text-md text-white/90">
+                                        <a class="hover:text-black font-bold" target="_blank"
+                                            href="https://github.com/BrunOnurBMB/LobosDengososDeMeiasDaVov-Carmela">Link
+                                            do
+                                            projeto no GitHub</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="extra-wrapper" class="overflow-hidden transition-all duration-700 ease-in-out h-0">
+                            <div id="extra-projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+                                <!-- Card 4 -->
+                                <div
+                                    class="card-extra opacity-0 translate-y-4 transition-all duration-700 ease-in-out mb-0">
+                                    <div
+                                        class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
+                                        <img src="./assets/imgs/projeto4.png" alt="Projeto 4"
+                                            class="w-full h-48 object-cover">
+                                        <div class="p-4 flex flex-col gap-2">
+                                            <h3 class="text-xl font-semibold text-[#aed4c8]">Projeto 4</h3>
+                                            <p class="text-white/90 text-sm">Descrição do projeto 4.</p>
+                                            <p class="text-sm text-white/60"><strong>Tecnologias:</strong> React,
+                                                Node.js
+                                            </p>
+                                            <p class="text-sm text-white/60"><strong>Aprendizado:</strong>
+                                                Integração
+                                                frontend/backend.</p>
+                                            <p class="text-md text-white/90">
+                                                <a class="hover:text-black font-bold" target="_blank" href="#">Link
+                                                    do
+                                                    projeto
+                                                    no GitHub</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 5 -->
+                                <div
+                                    class="card-extra opacity-0 translate-y-4 transition-all duration-700 ease-in-out mb-0">
+                                    <div
+                                        class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
+                                        <img src="./assets/imgs/projeto5.png" alt="Projeto 5"
+                                            class="w-full h-48 object-cover">
+                                        <div class="p-4 flex flex-col gap-2">
+                                            <h3 class="text-xl font-semibold text-[#aed4c8]">Projeto 5</h3>
+                                            <p class="text-white/90 text-sm">Descrição do projeto 5.</p>
+                                            <p class="text-sm text-white/60"><strong>Tecnologias:</strong> Vue.js,
+                                                Firebase
+                                            </p>
+                                            <p class="text-sm text-white/60"><strong>Aprendizado:</strong>
+                                                Autenticação
+                                                e
+                                                deploy.</p>
+                                            <p class="text-md text-white/90">
+                                                <a class="hover:text-black font-bold" target="_blank" href="#">Link
+                                                    do
+                                                    projeto
+                                                    no GitHub</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 6 -->
+                                <div
+                                    class="card-extra opacity-0 translate-y-4 transition-all duration-700 ease-in-out mb-0">
+                                    <div
+                                        class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col transition-transform duration-300 transform transform scale-95 hover:scale-100 hover:shadow-xl">
+                                        <img src="./assets/imgs/projeto6.png" alt="Projeto 6"
+                                            class="w-full h-48 object-cover">
+                                        <div class="p-4 flex flex-col gap-2">
+                                            <h3 class="text-xl font-semibold text-[#aed4c8]">Projeto 6</h3>
+                                            <p class="text-white/90 text-sm">Descrição do projeto 6.</p>
+                                            <p class="text-sm text-white/60"><strong>Tecnologias:</strong> Python,
+                                                Flask
+                                            </p>
+                                            <p class="text-sm text-white/60"><strong>Aprendizado:</strong> APIs REST
+                                                e
+                                                rotas
+                                                dinâmicas.</p>
+                                            <p class="text-md text-white/90">
+                                                <a class="hover:text-black font-bold" target="_blank" href="#">Link
+                                                    do
+                                                    projeto
+                                                    no GitHub</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full text-center mt-6">
+                            <button id="toggle-projects"
+                                class="bg-[#5eb8ac] hover:bg-[#4aa79a] text-white hover:text-black font-semibold px-6 py-3 rounded-lg shadow-md transition-colors duration-300">
+                                Ver mais projetos
+                            </button>
+                        </div>
+                    </div>
+
+            </section>
+
+            <section id="contato"
+                class="w-full px-6 py-16 bg-[#1c5a55] rounded-lg transform -translate-y-8 transition-transform duration-700 hover:scale-[1.01] hover:-translate-y-10 shadow-2xl border border-white/20 ring-1 ring-white/10"
+                data-aos="fade-up" data-aos-delay="300">
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg p-6 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] space-y-6 flex flex-col items-center transition-all duration-500 ">
+
+                    <!-- Título -->
+                    <div class="w-full text-center">
+                        <h2
+                            class="text-3xl font-semibold relative inline-block after:block after:w-16 after:h-1 after:bg-[#5eb8ac] after:mt-2">
+                            Contato
+                        </h2>
+                    </div>
+                    <div class="text-lg pt-4 max-w-2xl mx-auto">
+                        <p>
+                            Entre em contato para realizar um orçamento, tirar dúvidas ou apenas para trocar uma ideia.
+                        </p>
+                    </div>
+                    <!-- Formulário de contato -->
+                    <div class="flex flex-wrap justify-center gap-8 text-white text-lg">
+                        <form action="https://formsubmit.co/bruno.bifano.0803@gmail.com" method="POST"
+                            class="space-y-4 max-w-xl mx-auto" id="contact-form">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="box">
+
+                            <input type="text" name="name" placeholder="Seu nome"
+                                class="w-full px-4 py-3 rounded bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#5eb8ac]"
+                                required>
+
+                            <input type="email" name="email" placeholder="Seu e-mail"
+                                class="w-full px-4 py-3 rounded bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#5eb8ac]"
+                                required>
+
+                            <textarea name="message" rows="5" placeholder="Sua mensagem"
+                                class="w-full px-4 py-3 rounded bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#5eb8ac]"
+                                required></textarea>
+
+                            <button type="submit"
+                                class="bg-[#5eb8ac] hover:bg-[#4aa79a] text-white hover:text-black font-semibold px-6 py-3 rounded-lg shadow-md transition-colors duration-300">
+                                Enviar mensagem
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Canvas de sucesso -->
+                    <div id="success-message"
+                        class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden animate-fade-in">
+                        <div class="bg-[#1c5a55] text-white p-8 rounded-lg shadow-lg text-center max-w-sm w-full">
+                            <h3 class="text-xl font-semibold mb-4">Mensagem enviada com sucesso!</h3>
+                            <p class="text-white/80 mb-6">Obrigado por entrar em contato. Responderei em breve.</p>
+                            <button onclick="closeSuccessMessage()"
+                                class="bg-[#5eb8ac] hover:bg-[#4aa79a] text-black font-semibold px-4 py-2 rounded transition">
+                                Fechar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center gap-8 text-white text-lg">
+                        <div>
+                            <h3 class="text-xl font-semibold text-[#aed4c8] text-center">
+                                Ou entre em contato comigo por alguma destas redes:
+                            </h3>
+                        </div>
+
+                        <section class="flex flex-wrap justify-center gap-8 text-white text-lg">
+                            <a href="https://www.linkedin.com/in/bruno-silveira-496705293/" target="_blank"
+                                rel="noopener noreferrer" aria-label="LinkedIn"
+                                class="flex items-center gap-3 hover:text-[#5eb8ac] transition-colors duration-200">
+                                <img src="./assets/icons/logotipo-do-linkedin.png" alt="LinkedIn" class="w-6 h-6">
+                                LinkedIn
+                            </a>
+
+                            <a href="https://github.com/BrunOnurBMB" target="_blank" rel="noopener noreferrer"
+                                aria-label="GitHub"
+                                class="flex items-center gap-3 hover:text-[#5eb8ac] transition-colors duration-200">
+                                <img src="./assets/icons/github-original.svg" alt="GitHub" class="w-6 h-6">
+                                GitHub
+                            </a>
+
+                            <a href="https://wa.me/5511910184807" target="_blank" rel="noopener noreferrer"
+                                aria-label="WhatsApp"
+                                class="flex items-center gap-3 hover:text-[#5eb8ac] transition-colors duration-200">
+                                <img src="./assets/icons/whatsapp.png" alt="WhatsApp" class="w-6 h-6">
+                                WhatsApp
+                            </a>
+
+                            <a href="https://www.instagram.com/onurbruno96?igsh=MXY1cXhjOGIwazZtag==" target="_blank"
+                                rel="noopener noreferrer" aria-label="Instagram"
+                                class="flex items-center gap-3 hover:text-[#5eb8ac] transition-colors duration-200">
+                                <img src="./assets/icons/instagram.png" alt="Instagram" class="w-6 h-6">
+                                Instagram
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="footer"
+            class="bg-white/20 backdrop-blur-md text-gray-900 py-4 px-6 flex justify-between items-center">
+            <div class="text-sm">© 2025 Bruno Bifano. Todos os direitos reservados.</div>
+        </footer>
+    </div>
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+
+    <script src="scripts/menuHamburguer.js"></script>
+    <script type="module" src="/scripts/hero.js"></script>
+    <script src="/scripts/cursor.js"></script>
+    <script type="module" src="/scripts/torreHanoi.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script type="module" src="/scripts/particles-bg.js"></script>
+    <script src="/scripts/email.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="/scripts/animationAOS.js"></script>
+    <script src="/scripts/projectsSeeMore.js"></script>
+</body>
+
+</html>

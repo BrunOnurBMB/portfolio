@@ -1,0 +1,94 @@
+/*Contorno do h1*/
+.stroke-hero {
+    color: #ffffff;
+    -webkit-text-stroke: 1.5px #5eb8ac;
+    text-shadow:
+        0 0 4px #5eb8ac,
+        0 0 8px #aed4c8,
+        0 0 16px #aed4c8;
+
+    animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/*efeito pulsante no h1*/
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 4px #5eb8ac,
+            0 0 8px #aed4c8,
+            0 0 16px #aed4c8;
+    }
+
+    50% {
+        text-shadow:
+            0 0 1px #5eb8ac,
+            0 0 2px #aed4c8,
+            0 0 4px #aed4c8;
+    }
+}
+
+/*marcação do nav*/
+.active-link {
+    color: #5eb8ac;
+    font-weight: 600;
+}
+
+/*Editando o cursor*/
+#cursor-dot,
+#cursor-ring {
+    will-change: transform, left, top;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #5eb8ac;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    top: 0;
+    left: 0;
+}
+
+
+#cursor-ring {
+    width: 38px;
+    height: 38px;
+    border: 1px solid #5eb8ac;
+    border-radius: 50%;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    ;
+}
+
+canvas {
+    pointer-events: auto;
+    /* Garante que os cliques sejam detectados */
+}
+
+#particles-bg canvas {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -10 !important;
+    pointer-events: none;
+}
