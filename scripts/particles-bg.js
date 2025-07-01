@@ -78,7 +78,7 @@ function animate() {
         pos[idx + 1] += speeds[i]; // sobe no eixo Y
 
         if (pos[idx + 1] > 6) {
-            pos[idx + 1] = -6; 2
+            pos[idx + 1] = -6;
             pos[idx] = (Math.random() - 0.5) * aspect * 12;
         }
     }
