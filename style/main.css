@@ -1,4 +1,4 @@
-/*Contorno do h1*/
+/* Contorno e brilho para desktop h1*/
 .stroke-hero {
     color: #ffffff;
     -webkit-text-stroke: 1.5px #5eb8ac;
@@ -6,9 +6,19 @@
         0 0 4px #5eb8ac,
         0 0 8px #aed4c8,
         0 0 16px #aed4c8;
-
     animation: pulse-glow 2.5s ease-in-out infinite;
 }
+
+/* No mobile: remove o stroke e suaviza o brilho h1*/
+@media (max-width: 640px) {
+    .stroke-hero {
+        -webkit-text-stroke: 0;
+        text-shadow:
+            0 0 2px #5eb8ac,
+            0 0 4px #aed4c8;
+    }
+}
+
 
 /*efeito pulsante no h1*/
 @keyframes pulse-glow {
@@ -95,21 +105,24 @@ canvas {
 
 /* Scrollbar para navegadores baseados em WebKit (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #14403c; /* Cor do fundo da barra */
+    background: #14403c;
+    /* Cor do fundo da barra */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #5eb8ac; /* Cor do "botão" da barra */
-  border-radius: 6px;
-  border: 2px solid #14403c; /* Borda para dar contraste */
+    background-color: #5eb8ac;
+    /* Cor do "botão" da barra */
+    border-radius: 6px;
+    border: 2px solid #14403c;
+    /* Borda para dar contraste */
 }
 
 /* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: #5eb8ac #14403c;
+    scrollbar-width: thin;
+    scrollbar-color: #5eb8ac #14403c;
 }
