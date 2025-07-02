@@ -113,7 +113,3 @@ canvas {
   scrollbar-width: thin;
   scrollbar-color: #5eb8ac #14403c;
 }
-
-.hidden {
-    display: none !important;
-}
