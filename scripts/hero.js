@@ -6,14 +6,15 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
 camera.position.z = 6;
 
-renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
-
 function isMobile() {
     return window.innerWidth <= 900;
 }
 
-const particleCount = 3000;
+const pixelRatio = isMobile() ? 1 : window.devicePixelRatio;
+renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+renderer.setPixelRatio(pixelRatio);
+
+const particleCount = isMobile() ? 1000 : 3000;
 const positions = new Float32Array(particleCount * 3);
 const colors = new Float32Array(particleCount * 3);
 const corAleatoria = ['#aed4c8', '#5eb8ac', '#6e999c', '#ffffff'];
@@ -73,12 +74,7 @@ const particles = new THREE.Points(geometry, material);
 scene.add(particles);
 
 const mouse3D = new THREE.Vector3();
-mouse3D.set(10000, 10000, 0); // posição bem fora do campo de visão
-
-
-if (!isMobile()) {
-    document.addEventListener('mousemove', onMouseMove);
-}
+mouse3D.set(10000, 10000, 0); // posição fora do campo de visão
 
 function onMouseMove(event) {
     const ndcX = (event.clientX / canvas.clientWidth) * 2 - 1;
@@ -90,25 +86,35 @@ function onMouseMove(event) {
     mouse3D.copy(camera.position).add(dir.multiplyScalar(distance));
 }
 
+if (!isMobile()) {
+    document.addEventListener('mousemove', onMouseMove);
+}
+
 let time = 0;
 function animate() {
     requestAnimationFrame(animate);
     const pos = geometry.attributes.position.array;
-    let nearbyCount = 0;
 
-    for (let i = 0; i < particleCount; i++) {
-        const idx = i * 3;
+    if (isMobile()) {
+        for (let i = 0; i < particleCount; i++) {
+            const idx = i * 3;
+            baseX[i] += 0.01;
+            if (baseX[i] > aspect * 6) baseX[i] = -aspect * 6;
 
-        baseX[i] += 0.01;
-        if (baseX[i] > aspect * 6) baseX[i] = -aspect * 6;
+            pos[idx] = baseX[i];
+            pos[idx + 1] = baseY[i];
+        }
+    } else {
+        let nearbyCount = 0;
+        for (let i = 0; i < particleCount; i++) {
+            const idx = i * 3;
 
-        const x = baseX[i];
-        const y = baseY[i];
+            baseX[i] += 0.01;
+            if (baseX[i] > aspect * 6) baseX[i] = -aspect * 6;
 
-        if (isMobile()) {
-            pos[idx] = x;
-            pos[idx + 1] = y;
-        } else {
+            const x = baseX[i];
+            const y = baseY[i];
+
             const dx = baseX[i] - mouse3D.x;
             const dy = baseY[i] - mouse3D.y;
             const dist = Math.sqrt(dx * dx + dy * dy) + 0.001;
@@ -127,15 +133,18 @@ function animate() {
 
             if (dist < 2.5) nearbyCount++;
         }
-    }
 
-    if (!isMobile()) {
         const slowdown = 1 + nearbyCount * 0.004;
         time += 0.03 / slowdown;
     }
 
     geometry.attributes.position.needsUpdate = true;
-    renderer.render(scene, camera);
+
+    try {
+        renderer.render(scene, camera);
+    } catch (e) {
+        console.warn("Erro ao renderizar cena:", e);
+    }
 }
 
 animate();
@@ -144,11 +153,4 @@ window.addEventListener('resize', () => {
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-
-    if (isMobile()) {
-        document.removeEventListener('mousemove', onMouseMove);
-    } else {
-        document.addEventListener('mousemove', onMouseMove);
-    }
-
 });
